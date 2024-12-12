@@ -46,31 +46,31 @@ public:
     public:
         using iterator_cateogry = std::forward_iterator_tag;
 
-        explicit iterator(Node *ptr = nullptr) : ptr{ptr} {}
-        iterator(const iterator& other) : ptr{other.ptr} {}
-        iterator(iterator&& other) : ptr{other.ptr} {
+        explicit iterator(Node *ptr = nullptr) : const_iterator(ptr) {}
+        iterator(const iterator& other) : const_iterator(other.ptr) {}
+        iterator(iterator&& other) : const_iterator(other.ptr) {
             other.ptr = nullptr;
         }
         
         iterator& operator=(const iterator& other) {
             if (this != &other) {
-                ptr = other.ptr;
+                this->ptr = other.ptr;
             }
             return *this;
         }
 
         iterator& operator=(iterator&& other) {
             if (this != &other) {
-                ptr = other.ptr;
+                this->ptr = other.ptr;
                 other.ptr = nullptr;
             }
             return *this;
         }
 
         const T& operator*() const {
-            return ptr->value;
+            return this->ptr->value;
         }
-        Node *getPtr() const {return ptr;}
+        Node *getPtr() const {return this->ptr;}
     };
 
     ForwardList();

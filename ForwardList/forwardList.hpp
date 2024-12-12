@@ -1,5 +1,6 @@
 #include "forwardList.h"
 #include <iostream>
+#include <vector>
 
 template<class T>
 ForwardList<T>::ForwardList() : before{Node(T())} {
@@ -10,6 +11,7 @@ template<class T>
 ForwardList<T>::ForwardList(const_reference val) : ForwardList() {
     push_front(val);
 }
+
 
 template<class T>
 ForwardList<T>::ForwardList(const ForwardList& other) : before{Node()} {
