@@ -32,17 +32,25 @@ public:
         const T& operator*() const {
             return ptr->value;
         }
+        
         bool operator==(const const_iterator& other) {
             return ptr == other.ptr;
         }
 
         const_iterator& operator++() {
-            
+            if (ptr) {
+                ptr = ptr->next;
+            }
+            return *this;
+        }
+
+        Node* getPtr() const {
+            return this->ptr;
         }
 
     };
 
-    class iterator : const_iterator {
+    class iterator : public const_iterator {
     public:
         using iterator_cateogry = std::forward_iterator_tag;
 
